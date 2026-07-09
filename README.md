@@ -4,6 +4,12 @@ Application web dynamique multi-pages (React + Vite + React Router) présentant
 le programme de formation **Référent Digital · Expert en Communication
 Digitale** de l'Institut CJEPE-BENIN.
 
+## Ouvrir le cours (sans rien installer)
+
+Double-cliquez sur [`index.html`](index.html), à la racine du dépôt — comme
+le fichier de départ. Tout le JS/CSS est intégré dans ce fichier unique,
+aucun serveur ni installation n'est nécessaire.
+
 ## Pages
 
 - `/` — Accueil : hero, statistiques clés, piliers de la formation.
@@ -12,8 +18,8 @@ Digitale** de l'Institut CJEPE-BENIN.
   noté), avec pagination précédent/suivant vers les modules voisins.
 - `/infos` — Durée, tarifs et contact.
 
-Le routing utilise `HashRouter` pour rester déployable sans configuration
-serveur particulière (compatible hébergement statique type GitHub Pages).
+Le routing utilise `HashRouter` : il fonctionne aussi bien en ouverture
+directe du fichier (`file://`) qu'une fois hébergé en ligne.
 
 ## Fonctionnalités
 
@@ -24,35 +30,41 @@ serveur particulière (compatible hébergement statique type GitHub Pages).
   visuelle, score, recommencer) à la fin de chaque module.
 - Mise en page responsive (menu rétractable sur mobile).
 
-## Ouvrir directement (sans serveur)
+## Développement
 
-Le fichier [`dist/index.html`](dist/index.html) est un build autonome
-(JS/CSS inlinés) : double-cliquez dessus pour lancer l'application
-directement dans votre navigateur, sans installer Node ni lancer de
-commande. C'est la version à jour du dernier `npm run build` committé.
-
-## Démarrer en local (développement)
+Le code source vit dans [`app/`](app/) ; la racine du dépôt ne contient que
+le résultat prêt à ouvrir (`index.html` + `favicon.svg`).
 
 ```bash
+cd app
 npm install
-npm run dev
+npm run dev          # serveur de développement (http://localhost:5173)
 ```
 
-## Build de production
+## Mettre à jour le fichier ouvrable
+
+Après toute modification du contenu ou du code, régénérez `index.html` à la
+racine :
 
 ```bash
-npm run build
-npm run preview
+cd app
+npm run release       # build + copie dist/index.html vers ../index.html
 ```
 
-`npm run build` régénère `dist/index.html` en un seul fichier autonome
-(grâce à `vite-plugin-singlefile`) — à recommitter après toute modification
-du contenu si vous voulez que la version "double-clic" reste à jour.
+Puis committez `index.html` (et `favicon.svg` si modifié) avec vos autres
+changements.
 
 ## Structure
 
-- `src/data/sections.js` — contenu des modules (fiches, TP, quiz).
-- `src/data/categories.js` — classement des modules par pilier.
-- `src/pages/` — Home, Programme, Module, Infos, NotFound.
-- `src/components/` — NavBar, ModuleCard, ModuleNav, Section, Card, TP, Quiz, InfoPanel.
-- `src/utils/filterSections.js` — logique de recherche/filtrage.
+```
+index.html            ← fichier ouvrable en double-clic (généré)
+favicon.svg
+legacy/                ← ancienne version HTML statique, conservée pour référence
+app/                   ← code source (React + Vite)
+  src/data/sections.js  — contenu des modules (fiches, TP, quiz)
+  src/data/categories.js — classement des modules par pilier
+  src/pages/            — Home, Programme, Module, Infos, NotFound
+  src/components/       — NavBar, ModuleCard, ModuleNav, Section, Card, TP, Quiz, InfoPanel
+  src/utils/filterSections.js — logique de recherche/filtrage
+  scripts/release.mjs   — copie le build vers la racine du dépôt
+```

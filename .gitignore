@@ -8,11 +8,14 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+app/dist
 dist-ssr
 *.local
 
-# dist/ est volontairement suivi : il contient le build autonome
-# (index.html avec JS/CSS inlinés) ouvrable en double-clic sans serveur.
+# /index.html et /favicon.svg (racine) sont volontairement suivis : c'est
+# le build autonome (JS/CSS inlinés) généré par "npm run release" dans
+# app/, ouvrable en double-clic sans serveur. app/dist est l'intermédiaire
+# de build, lui, ignoré.
 
 # Editor directories and files
 .vscode/*
