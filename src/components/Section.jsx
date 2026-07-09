@@ -1,11 +1,10 @@
-import { forwardRef } from 'react'
 import Card from './Card'
 import TP from './TP'
 import Quiz from './Quiz'
 
-const Section = forwardRef(function Section({ section }, ref) {
+export default function Section({ section }) {
   return (
-    <section className="section" id={section.id} ref={ref}>
+    <section className="section" id={section.id}>
       <h2 className="section-title">
         <span className="emoji">{section.emoji}</span> {section.title}
       </h2>
@@ -22,6 +21,4 @@ const Section = forwardRef(function Section({ section }, ref) {
       )}
     </section>
   )
-})
-
-export default Section
+}
