@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Référent Digital · Expert en Communication Digitale · CJEPE-BENIN</title>
+  <style>
+    /* --- RESET & BASE --- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #f0f6fe;
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+      display: flex;
+      justify-content: center;
+      padding: 2rem 1rem;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 1200px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 2rem;
+      box-shadow: 0 30px 60px -15px rgba(0,20,40,0.25);
+      overflow: hidden;
+    }
+
+    /* --- HEADER --- */
+    .header {
+      background: linear-gradient(145deg, #0a2647 0%, #1a3a5e 100%);
+      padding: 2rem 2.5rem 1.8rem;
+      color: white;
+    }
+    .header-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; }
+    .institut { font-size: 0.9rem; letter-spacing: 0.5px; font-weight: 500; opacity: 0.85; text-transform: uppercase; }
+    .institut strong { font-weight: 700; color: #f7d44a; }
+    .badge-cert { background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); padding: 0.4rem 1.2rem; border-radius: 100px; font-size: 0.8rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.15); }
+    .title-block { margin-top: 1.5rem; }
+    .title-block h1 { font-size: 2.8rem; font-weight: 700; line-height: 1.1; background: linear-gradient(to right, #f9e45b, #ffd966); -webkit-background-clip: text; background-clip: text; color: transparent; display: inline-block; }
+    .sub-tags { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 0.3rem; font-weight: 400; opacity: 0.95; }
+    .sub-tags span { display: flex; align-items: center; gap: 0.4rem; }
+    .sub-tags .check { color: #f7d44a; font-weight: 700; }
+
+    /* --- BODY --- */
+    .body { padding: 2rem 2.5rem; }
+
+    /* --- SECTIONS --- */
+    .section { margin-bottom: 2.5rem; }
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #0a2647;
+      border-bottom: 4px solid #f7d44a;
+      padding-bottom: 0.4rem;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .section-title .emoji { font-size: 2rem; }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .card-item {
+      background: #f8faff;
+      border-radius: 1.2rem;
+      padding: 1.4rem 1.2rem;
+      border: 1px solid #e6edf6;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      transition: 0.15s ease;
+    }
+    .card-item:hover { border-color: #c6d7ed; background: #f5f9ff; }
+    .card-item h3 { font-size: 1.2rem; color: #0a2647; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.5rem; }
+    .card-item p, .card-item li { color: #1f3e5e; line-height: 1.5; font-size: 0.92rem; }
+    .card-item ul { list-style: none; padding: 0; margin-top: 0.4rem; }
+    .card-item ul li { padding: 0.2rem 0 0.2rem 1.6rem; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="%231a4b7a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>') left center no-repeat; background-size: 14px; }
+    .tag { display: inline-block; background: #e1ebf7; border-radius: 40px; padding: 0.1rem 1rem; font-size: 0.7rem; font-weight: 600; color: #0a2647; margin-top: 0.6rem; }
+
+    /* --- INFO ROW --- */
+    .info-row {
+      display: flex; flex-wrap: wrap; justify-content: space-between;
+      background: #f3f8ff; border-radius: 1.5rem; padding: 1.2rem 1.8rem;
+      border: 1px solid #e0e9f3; margin: 1.5rem 0;
+    }
+    .info-item { display: flex; flex-direction: column; }
+    .info-item .label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.6px; color: #4d627a; font-weight: 600; }
+    .info-item .value { font-size: 1.6rem; font-weight: 700; color: #0a2647; line-height: 1.2; }
+    .info-item .value small { font-weight: 400; font-size: 0.9rem; color: #2f4a6a; margin-left: 0.2rem; }
+    .info-item .value .currency { font-size: 1rem; font-weight: 600; color: #1a4b7a; }
+
+    /* --- SCHEDULE --- */
+    .schedule-block {
+      background: #eef3fc; border-radius: 1.5rem; padding: 1.2rem 1.8rem;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      border-left: 4px solid #f7d44a; margin: 1.5rem 0;
+    }
+    .schedule-block p { font-weight: 500; color: #0a2647; font-size: 1.05rem; }
+    .schedule-block .icon-big { font-size: 1.6rem; margin-right: 0.6rem; }
+    .badge-online { background: #d4e2f5; border-radius: 50px; padding: 0.3rem 1.2rem; font-size: 0.75rem; font-weight: 600; color: #0a2647; }
+
+    /* --- CONTACT --- */
+    .contact-section {
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+      background: #ffffff; border-radius: 1.5rem; padding: 0.8rem 1.2rem 0.8rem 1.8rem;
+      border: 1px solid #dce4ef; margin-top: 0.8rem;
+    }
+    .contact-city { font-weight: 600; color: #0a2647; font-size: 1.1rem; }
+    .contact-phones { display: flex; flex-wrap: wrap; gap: 0.8rem 1.8rem; font-weight: 500; }
+    .contact-phones a { text-decoration: none; color: #1a4b7a; transition: 0.15s; display: inline-flex; align-items: center; gap: 0.3rem; }
+    .contact-phones a:hover { color: #0a2647; text-decoration: underline; }
+
+    hr { border: 0; height: 1px; background: linear-gradient(to right, #dce4ef, transparent); margin: 0.8rem 0 1.2rem; }
+    .footer-meta { display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center; }
+    .pill-light { background: #e5edf8; border-radius: 40px; padding: 0.2rem 1rem; font-size: 0.75rem; font-weight: 600; color: #1a4b7a; }
+    .footer-note { font-size: 0.8rem; color: #62748d; }
+    .micro-info { margin-top: 1.2rem; font-size: 0.75rem; color: #6f85a0; border-top: 1px solid #e6edf6; padding-top: 0.8rem; display: flex; flex-wrap: wrap; justify-content: space-between; }
+
+    @media (max-width: 640px) {
+      .header { padding: 1.5rem; }
+      .body { padding: 1.5rem; }
+      .title-block h1 { font-size: 2rem; }
+      .info-row { flex-direction: column; gap: 0.8rem; }
+      .contact-section { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+      .schedule-block { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ==================== HEADER ==================== -->
+  <div class="header">
+    <div class="header-top">
+      <div class="institut"><strong>INSTITUT DE FORMATION PROFESSIONNELLE</strong><br />CJEPE · BENIN</div>
+      <div class="badge-cert">🏅 Certifiant</div>
+    </div>
+    <div class="title-block">
+      <h1>Référent Digital · Expert en Communication Digitale</h1>
+      <div class="sub-tags">
+        <span><span class="check">✅</span> Marketing Digital</span>
+        <span><span class="check">✅</span> Communication Digitale</span>
+        <span><span class="check">✅</span> Gestion de Communauté</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== BODY ==================== -->
+  <div class="body">
+
+    <!-- ========================================= -->
+    <!-- SECTION 1 : GÉNÉRALITÉS MARKETING DIGITAL -->
+    <!-- ========================================= -->
+    <div class="section">
+      <div class="section-title"><span class="emoji">📘</span> Généralités sur le Marketing &amp; Communication Digitale</div>
+      <div class="card-grid">
+        <div class="card-item">
+          <h3>📌 Définition du Marketing</h3>
+          <p>Ensemble des actions qui visent à : découvrir les besoins des consommateurs, proposer une solution, communiquer pour faire connaître la solution, vendre la solution, fidéliser les clients et en gagner de nouveaux.</p>
+        </div>
+        <div class="card-item">
+          <h3>🌐 Marketing Digital</h3>
+          <p>Ensemble de techniques de communication déployées sur les plateformes connectées à l'internet pour attirer des utilisateurs qu'on engage ensuite dans un parcours d'achat.</p>
+        </div>
+        <div class="card-item">
+          <h3>🎯 Enjeux du Marketing Digital</h3>
+          <ul>
+            <li>Moderniser votre communication</li>
+            <li>Conquérir de nouveaux espaces</li>
+            <li>Développer votre business</li>
+            <li>Fidéliser clients &amp; prospects</li>
+            <li>Gérer votre e-réputation</li>
+            <li>Optimiser le référencement</li>
+            <li>Augmenter le trafic web</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- SECTION 2 : PLATEFORMES CONNECTÉES        -->
+    <!-- ========================================= -->
+    <div class="section">
+      <div class="section-title"><span class="emoji">🖥️</span> Plateformes connectées à l'internet</div>
+      <div class="card-grid">
+        <div class="card-item">
+          <h3>🌍 Site Web</h3>
+          <p>Ensemble de pages web et ressources interreliées par des liens hypertextes, accessibles via une URL. <strong>Statique</strong> (HTML, faible coût, rapide) ou <strong>dynamique</strong> (JavaScript/PHP, interactif, évolutif).</p>
+        </div>
+        <div class="card-item">
+          <h3>📱 Applications Web</h3>
+          <p>Programme ou logiciel accessible via un navigateur web, à la différence d'un site qui est une collection de pages.</p>
+        </div>
+        <div class="card-item">
+          <h3>🔍 Moteurs de recherche</h3>
+          <p>Applications permettant de trouver des ressources à partir d'une requête. Exemples : Google (91,88 %), Bing (3,19 %), Yahoo (1,52 %), Baidu (0,76 %).</p>
+        </div>
+        <div class="card-item">
+          <h3>📲 Réseaux sociaux</h3>
+          <p>Sites ou applications mobiles permettant d'échanger, partager des contenus, découvrir des photos, vidéos, sons, s'informer. Types : professionnels, partage photos/vidéos, jeux, rencontres. Usuels : Facebook, Twitter, LinkedIn, WhatsApp, YouTube, Instagram, TikTok.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- SECTION 3 : TECHNIQUES DE COMMUNICATION   -->
+    <!-- ========================================= -->
+    <div class="section">
+      <div class="section-title"><span class="emoji">⚡</span> Techniques de communication en marketing digital</div>
+      <div class="card-grid">
+        <div class="card-item">
+          <h3>📝 Stratégie de contenu</h3>
+          <ul>
+            <li><strong>Inbound Marketing</strong> : contenu à forte valeur ajoutée, résultats longs mais durables.</li>
+            <li><strong>Outbound Marketing</strong> : publicité payante, résultats rapides mais coûteuse.</li>
+            <li><strong>Publicité en ligne</strong> : promouvoir des contenus auprès d'une cible moyennant paiement.</li>
+            <li><strong>Storytelling</strong> : promouvoir une idée à travers un récit pour susciter l'émotion.</li>
+            <li><strong>Copywriting</strong> : rédiger des contenus publicitaires de qualité pour pousser à l'action.</li>
+          </ul>
+        </div>
+        <div class="card-item">
+          <h3>📱 Stratégie Social Media</h3>
+          <p>Promouvoir votre contenu et interagir avec vos followers sur Facebook, Instagram, LinkedIn, Twitter… Atteindre un public plus large, accroître la notoriété, générer des prospects, améliorer l'engagement.</p>
+        </div>
+        <div class="card-item">
+          <h3>🔎 Stratégie SEM (moteurs de recherche)</h3>
+          <p>Ensemble des techniques pour attirer du trafic sur les moteurs de recherche : <strong>SEO</strong> (référencement naturel) et <strong>SEA</strong> (référencement payant).</p>
+        </div>
+        <div class="card-item">
+          <h3>✉️ Stratégie d'e-mailing</h3>
+          <p>Collecte d'adresses mails et envoi de messages (bienvenue, promotionnel, newsletter, prise de contact, suggestion de produits) pour réussir son e-mail marketing.</p>
+        </div>
+        <div class="card-item">
+          <h3>🔄 Stratégie de conversion</h3>
+          <p>Parcours client : chemin suivi par un prospect jusqu'à l'achat. 3 grandes phases : <strong>Sensibilisation, Considération, Conversion</strong>.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- SECTION 4 : PAID SOCIAL MANAGER           -->
+    <!-- ========================================= -->
+    <div class="section">
+      <div class="section-title"><span class="emoji">💰</span> Paid Social Manager</div>
+      <div class="card-grid">
+        <div class="card-item">
+          <h3>🎯 Rôle</h3>
+          <p>Créer et exécuter des campagnes publicitaires payantes sur les réseaux sociaux (Facebook, Instagram, Twitter, LinkedIn) pour accroître la notoriété, générer du trafic et des conversions.</p>
+        </div>
+        <div class="card-item">
+          <h3>📊 Création de campagnes</h3>
+          <ul>
+            <li>Définir les objectifs (ex : +20 % de ventes)</li>
+            <li>Identifier le public cible (démographie, intérêts)</li>
+            <li>Choisir la plateforme et le budget</li>
+            <li>Suivre et optimiser (CTR, taux de conversion, ROAS)</li>
+          </ul>
+        </div>
+        <div class="card-item">
+          <h3>📈 Mesure du succès</h3>
+          <ul>
+            <li><strong>CTR</strong> : clics / impressions</li>
+            <li><strong>Taux de conversion</strong> : actions / clics</li>
+            <li><strong>Taux d'engagement</strong> : interactions / impressions</li>
+            <li><strong>ROAS</strong> : revenus / dépenses publicitaires</li>
+          </ul>
+        </div>
+        <div class="card-item">
+          <h3>📱 Plateformes</h3>
+          <ul>
+            <li><strong>Facebook</strong> : ciblage démographique, intérêts, comportements, audiences similaires.</li>
+            <li><strong>Instagram</strong> : visuel, Stories, ciblage par intérêts.</li>
+            <li><strong>LinkedIn</strong> : ciblage professionnel (poste, secteur, taille d'entreprise).</li>
+            <li><strong>Twitter</strong> : tweets promus, comptes promus, tendances promues.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- SECTION 5 : MARKETING DIGITAL APPROFONDI  -->
+    <!-- ========================================= -->
+    <div class="section">
+      <div class="section-title"><span class="emoji">📊</span> Marketing Digital approfondi</div>
+      <div class="card-grid">
+        <div class="card-item">
+          <h3>🧩 Les 4P / 4C</h3>
+          <p><strong>4P</strong> : Produit, Prix, Place, Promotion. <strong>4C</strong> : Capital, Clientèle de base, Concurrence, Communication Citoyenne (prospection). En ligne : Plateforme, Publication, Programmation, Publicité.</p>
+        </div>
+        <div class="card-item">
+          <h3>📌 Stratégies marketing sur internet</h3>
+          <ul>
+            <li>Analyse (segmentation, ciblage)</li>
+            <li>Planification (organisation des réseaux et du site)</li>
+            <li>Ébauche (stratégie d'acquisition de visiteurs)</li>
+            <li>Conversion (tunnel de vente, copywriting, images/vidéos)</li>
+            <li>Tests (bon visiteur ciblé, conversion, rétention)</li>
+            <li>Optimisation (indicateurs, bugs, amélioration continue)</li>
+          </ul>
+        </div>
+        <div class="card-item">
+          <h3>📈 Avantages du marketing digital</h3>
+          <ul>
+            <li>Plus facile à mesurer</li>
+            <li>Ciblage précis</li>
+            <li>Plus rentable que le marketing traditionnel</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- SECTION 6 : COMMUNITY MANAGEMENT          -->
+    <!-- ========================================= -->
+    <div class="section">
+      <div class="section-title"><span class="emoji">👥</span> Community Management</div>
+      <div class="card-grid">
+        <div class="card-item">
+          <h3>📌 Définition</h3>
+          <p>Discipline qui consiste à gérer et développer une communauté en ligne : création de contenu, gestion des réseaux sociaux, modération, engagement des utilisateurs.</p>
+        </div>
+        <div class="card-item">
+          <h3>🎯 Rôle &amp; But</h3>
+          <p>Connecter la marque avec ses clients, fournir des informations utiles, générer du trafic et des conversions, construire la confiance et une relation durable.</p>
+        </div>
+        <div class="card-item">
+          <h3>📋 Plan CM</h3>
+          <ul>
+            <li>Recueillir des informations sur le sujet</li>
+            <li>Déterminer le public cible</li>
+            <li>Créer du contenu adapté</li>
+            <li>Trouver des images/vidéos</li>
+            <li>Élaborer une structure claire</li>
+          </ul>
+        </div>
+        <div class="card-item">
+          <h3>🛠 Outils &amp; technologies</h3>
+          <ul>
+            <li>Logiciels de gestion de communauté</li>
+            <li>Outils de gestion des réseaux sociaux</li>
+            <li>Outils d'analyse</li>
+            <li>Machine Learning &amp; IA</li>
+          </ul>
+        </div>
+        <div class="card-item">
+          <h3>📊 Mesure du succès</h3>
+          <ul>
+            <li>Nombre d'abonnés</li>
+            <li>Likes, partages, commentaires</li>
+            <li>Nombre de ventes</li>
+          </ul>
+        </div>
+        <div class="card-item">
+          <h3>🧠 5 compétences marketing</h3>
+          <ul>
+            <li>Gestion de projet</li>
+            <li>Leviers de performance digitale</li>
+            <li>Maîtrise des outils d'analyse</li>
+            <li>Social Media</li>
+            <li>Engagement comportemental</li>
+          </ul>
+        </div>
+        <div class="card-item">
+          <h3>📌 10 formes du marketing digital</h3>
+          <ul>
+            <li>Marketing de contenu</li>
+            <li>SEM</li>
+            <li>SMM</li>
+            <li>Publicité d'affichage</li>
+            <li>Marketing mobile</li>
+            <li>Marketing des réseaux sociaux</li>
+            <li>Email marketing</li>
+            <li>Marketing d'influenceur</li>
+            <li>Marketing d'affiliation</li>
+            <li>Marketing vidéo (audio)</li>
+          </ul>
+        </div>
+        <div class="card-item">
+          <h3>📌 4P du marketing digital mix</h3>
+          <ul>
+            <li><strong>Plateforme</strong></li>
+            <li><strong>Publication</strong> (contenu)</li>
+            <li><strong>Programmation</strong></li>
+            <li><strong>Promotion</strong> (publicité)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- SECTION 7 : SOCIAL MEDIA MANAGEMENT       -->
+    <!-- ========================================= -->
+    <div class="section">
+      <div class="section-title"><span class="emoji">📅</span> Social Media Management</div>
+      <div class="card-grid">
+        <div class="card-item">
+          <h3>📌 Plan Social Media</h3>
+          <ul>
+            <li>Objectifs (abonnés, engagement, ventes, notoriété)</li>
+            <li>Stratégies (campagnes, concours, promotions)</li>
+            <li>Contenu (équilibre promotionnel/informatif)</li>
+            <li>Équipe : Social Media Manager, CM, graphiste, analyste, webmaster</li>
+            <li>Calendrier et budget</li>
+          </ul>
+        </div>
+        <div class="card-item">
+          <h3>📊 Stratégie Social Media Marketing Mix</h3>
+          <ul>
+            <li>Analyse SWOT</li>
+            <li>Objectifs SMART (Spécifique, Mesurable, Actionnable, Réaliste, Temporel)</li>
+            <li>Analyse de la concurrence</li>
+            <li>Suivi statistique</li>
+            <li>Optimisation de la stratégie</li>
+            <li>Ligne éditoriale</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- SECTION 8 : VLOGGING                      -->
+    <!-- ========================================= -->
+    <div class="section">
+      <div class="section-title"><span class="emoji">🎥</span> Vlogging</div>
+      <div class="card-grid">
+        <div class="card-item">
+          <h3>📌 Introduction</h3>
+          <p>Un vlog (vidéo blog) est une forme de contenu en ligne consistant à créer et partager des vidéos personnelles ou informatives. Plateformes : YouTube, Vimeo, Dailymotion, Instagram, Twitch, Facebook, TikTok.</p>
+        </div>
+        <div class="card-item">
+          <h3>📝 Planification &amp; Préparation</h3>
+          <ul>
+            <li>Identifier votre public et vos objectifs</li>
+            <li>Trouver des idées de contenu</li>
+            <li>Élaborer un calendrier de publication</li>
+            <li>Réaliser un script ou un plan</li>
+            <li>Améliorer votre présence à l'écran (langage corporel, ton de voix)</li>
+          </ul>
+        </div>
+        <div class="card-item">
+          <h3>🎬 Production vidéo</h3>
+          <ul>
+            <li>Capturer des séquences de qualité</li>
+            <li>Techniques de prise de vue (angle, mouvements)</li>
+            <li>Utilisation de la lumière (naturelle et artificielle)</li>
+            <li>Enregistrement d'un bon son (micro externe)</li>
+            <li>Introduction au montage vidéo (Adobe Premiere, Final Cut, DaVinci Resolve)</li>
+          </ul>
+        </div>
+        <div class="card-item">
+          <h3>✂️ Montage &amp; Post-production</h3>
+          <ul>
+            <li>Importer et organiser les séquences</li>
+            <li>Couper, assembler, ajuster</li>
+            <li>Ajouter transitions, titres, effets spéciaux</li>
+            <li>Améliorer l'audio (volume, musique de fond)</li>
+            <li>Exporter et compresser pour diffusion en ligne</li>
+          </ul>
+        </div>
+        <div class="card-item">
+          <h3>📈 Promotion &amp; Gestion de chaîne</h3>
+          <ul>
+            <li>Optimiser titres, descriptions, balises (SEO)</li>
+            <li>Utiliser des miniatures attrayantes</li>
+            <li>Interagir avec les spectateurs (commentaires, réseaux sociaux)</li>
+            <li>Collaborer avec d'autres vloggers/influenceurs</li>
+            <li>Analyser les statistiques de visionnage</li>
+          </ul>
+        </div>
+        <div class="card-item">
+          <h3>🚀 Évolution &amp; Perfectionnement</h3>
+          <ul>
+            <li>Expérimenter différents formats et styles</li>
+            <li>Écouter les commentaires et critiques constructives</li>
+            <li>Suivre les tendances et les nouvelles techniques</li>
+            <li>Développer votre marque personnelle</li>
+            <li>Trouver des opportunités de monétisation (parrainages, publicités, etc.)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- SECTION 9 : RÉSEAUX SOCIAUX PAR DOMAINE   -->
+    <!-- ========================================= -->
+    <div class="section">
+      <div class="section-title"><span class="emoji">🌐</span> Réseaux sociaux par domaine d'activité</div>
+      <div class="card-grid">
+        <div class="card-item"><h3>📚 Éducation</h3><p>GitHub, Stack Overflow, Dev.to, HackerRank, LinkedIn, Reddit, Meetup.</p></div>
+        <div class="card-item"><h3>🍳 Culinaire</h3><p>Yummly, Cookpad, ChefTalk, Foodie, CuisineAZ, Instagram.</p></div>
+        <div class="card-item"><h3>💼 Professionnel</h3><p>LinkedIn.</p></div>
+        <div class="card-item"><h3>🏥 Médical</h3><p>Doximity, Sermo, Figure 1, Proximie, Quantiamd.</p></div>
+        <div class="card-item"><h3>🎨 Artistique</h3><p>Behance, Dribbble, Instagram, Pinterest.</p></div>
+        <div class="card-item"><h3>🌿 Environnemental</h3><p>EcoLink.</p></div>
+        <div class="card-item"><h3>🏃 Sportif</h3><p>Strava, MyFitnessPal.</p></div>
+        <div class="card-item"><h3>💻 Technologique</h3><p>LinkedIn, Twitter, Reddit, Hacker News, Stack Overflow, Discord, Medium, Dev.to.</p></div>
+        <div class="card-item"><h3>👨‍👩‍👧 Parental</h3><p>Peanut.</p></div>
+        <div class="card-item"><h3>🎭 Culturel</h3><p>Cultur'Connect.</p></div>
+      </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- SECTION 10 : RÉDACTION WEB                -->
+    <!-- ========================================= -->
+    <div class="section">
+      <div class="section-title"><span class="emoji">✍️</span> Rédaction Web</div>
+      <div class="card-grid">
+        <div class="card-item">
+          <h3>📌 Introduction</h3>
+          <p>La rédaction web est un art qui consiste à créer des contenus informatifs et intéressants pour un public cible. Elle implique une combinaison de techniques pour produire des contenus à la fois informatifs et attractifs.</p>
+        </div>
+        <div class="card-item">
+          <h3>📝 Écrire pour être lu</h3>
+          <ul>
+            <li>Choisir des sujets qui intéressent les lecteurs</li>
+            <li>Construire en « pyramide inversée » (essentiel en premier)</li>
+            <li>Rédiger de façon simple, directe et concrète</li>
+            <li>Faciliter la lecture à l'écran (titres, listes, gras)</li>
+            <li>Soigner le style (phrases courtes, vocabulaire simple)</li>
+          </ul>
+        </div>
+        <div class="card-item">
+          <h3>🔎 Écrire pour être référencé</h3>
+          <ul>
+            <li>Comprendre les bases du référencement naturel (SEO)</li>
+            <li>Choisir les mots-clés (longue traîne)</li>
+            <li>Optimiser les balises HTML (title, h1, h2, alt)</li>
+            <li>Créer des liens internes et entrants</li>
+          </ul>
+        </div>
+        <div class="card-item">
+          <h3>📚 Types de contenu</h3>
+          <p>Articles, infographies, vidéos, podcasts, présentations. Chaque type a ses avantages et doit être choisi en fonction du public cible et de l'objectif.</p>
+        </div>
+        <div class="card-item">
+          <h3>🔑 Recherche de mots-clés</h3>
+          <ul>
+            <li>Identifier les mots-clés pertinents (Google Trends, Keyword Planner)</li>
+            <li>Analyser la popularité et la compétitivité (SEMrush, Ahrefs)</li>
+            <li>Organiser par thème et catégorie</li>
+            <li>Optimiser avec des outils comme Yoast SEO</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- SECTION 11 : COPYWRITING                  -->
+    <!-- ========================================= -->
+    <div class="section">
+      <div class="section-title"><span class="emoji">🖋️</span> Copywriting</div>
+      <div class="card-grid">
+        <div class="card-item">
+          <h3>📌 Définition</h3>
+          <p>Le copywriting (conception-rédaction) est une technique de rédaction persuasive destinée à concevoir des textes publicitaires pour pousser le consommateur à l'action. C'est l'art de vendre avec les mots.</p>
+        </div>
+        <div class="card-item">
+          <h3>🎯 Objectif</h3>
+          <p>Pousser une audience à la conversion : ouvrir un email, cliquer sur un lien, s'abonner, contacter l'entreprise, s'inscrire à une newsletter, télécharger un fichier, prendre un rendez-vous, partager sur les réseaux sociaux, etc.</p>
+        </div>
+        <div class="card-item">
+          <h3>📝 10 règles essentielles</h3>
+          <ul>
+            <li>1. Faire connaissance avec le prospect (persona)</li>
+            <li>2. Identifier la proposition unique de vente</li>
+            <li>3. Déterminer l'objectif du texte de vente</li>
+            <li>4. Rédiger un titre séduisant (4U : Unique, Ultra-spécifique, Urgent, Utile)</li>
+            <li>5. Utiliser les mots magiques (avec parcimonie)</li>
+            <li>6. Appliquer AIDA : Attention, Intérêt, Désir, Action</li>
+            <li>7. Structurer et aérer le texte (sous-titres, paragraphes courts, listes)</li>
+            <li>8. Utiliser la preuve sociale (témoignages, avis, chiffres)</li>
+            <li>9. Retravailler le texte (supprimer, modifier, remplacer)</li>
+            <li>10. Faire des A/B testing et améliorer</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- SECTION 12 : PUBLICITÉ GOOGLE             -->
+    <!-- ========================================= -->
+    <div class="section">
+      <div class="section-title"><span class="emoji">📢</span> Publicité Google</div>
+      <div class="card-grid">
+        <div class="card-item">
+          <h3>🔍 Search Ads</h3>
+          <p>Annonces sur le réseau de recherche. Ciblage par mots-clés. Idéal pour toucher des utilisateurs en phase d'achat.</p>
+        </div>
+        <div class="card-item">
+          <h3>🖼️ Display Ads</h3>
+          <p>Annonces visuelles sur le réseau Display. Ciblage par intérêts, démographie, comportement. Idéal pour la notoriété.</p>
+        </div>
+        <div class="card-item">
+          <h3>🎬 YouTube Ads</h3>
+          <p>Annonces vidéo sur YouTube. Formats TrueView, bumper, non-skippable. Ciblage par intérêts et démographie.</p>
+        </div>
+        <div class="card-item">
+          <h3>🛒 Shopping Ads</h3>
+          <p>Annonces de produits avec images, prix, descriptions. Apparaissent dans les résultats de recherche et sur Google Shopping.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- SECTION 13 : MODULES RÉFÉRENT DIGITAL    -->
+    <!-- (fusion des 3 piliers avec définitions)   -->
+    <!-- ========================================= -->
+    <div class="section">
+      <div class="section-title"><span class="emoji">📚</span> Programme Référent Digital</div>
+      <div class="card-grid">
+        <div class="card-item">
+          <h3>📈 Marketing Digital</h3>
+          <p><strong>8 modules</strong> — Maîtrise des stratégies d'acquisition et de fidélisation.</p>
+          <ul>
+            <li><strong>SEO / SEA</strong> : optimisation et campagnes d'achat d'espaces.</li>
+            <li><strong>Email marketing &amp; automation</strong> : campagnes personnalisées et scénarios.</li>
+            <li><strong>Analytics &amp; tableau de bord</strong> : suivi des KPI et décisions data-driven.</li>
+            <li><strong>Stratégie de contenu payant</strong> : plans sponsorisés avec optimisation ROI.</li>
+            <li><strong>Social Ads</strong> : campagnes sur Meta, LinkedIn, TikTok.</li>
+            <li><strong>Marketing d'influence</strong> : collaboration avec influenceurs.</li>
+            <li><strong>Conversion Rate Optimization</strong> : tests A/B et analyse du parcours.</li>
+            <li><strong>Stratégie omnicanale</strong> : coordination des canaux digitaux et physiques.</li>
+          </ul>
+        </div>
+        <div class="card-item">
+          <h3>💬 Communication Digitale</h3>
+          <p><strong>6 ateliers</strong> — Concevoir et déployer une communication cohérente.</p>
+          <ul>
+            <li><strong>Plan de communication 360°</strong> : stratégie intégrée tous canaux.</li>
+            <li><strong>Rédaction web &amp; storytelling</strong> : techniques SEO et narration.</li>
+            <li><strong>Community management avancé</strong> : animation, modération, engagement.</li>
+            <li><strong>Gestion de crise et e-réputation</strong> : anticiper et résoudre les crises.</li>
+            <li><strong>Stratégie de contenu cross-canal</strong> : production adaptée à chaque plateforme.</li>
+            <li><strong>Veille et analyse concurrentielle</strong> : surveillance des tendances et concurrents.</li>
+          </ul>
+        </div>
+        <div class="card-item">
+          <h3>👥 Gestion de Communauté</h3>
+          <p><strong>5 modules</strong> — Animer, fédérer et développer une communauté engagée.</p>
+          <ul>
+            <li><strong>Animation sur les réseaux sociaux</strong> : contenus interactifs (live, stories).</li>
+            <li><strong>Modération &amp; relation membres</strong> : règles de modération et gestion des conflits.</li>
+            <li><strong>Campagnes d'engagement UGC</strong> : concours, challenges, témoignages.</li>
+            <li><strong>KPI communautaires &amp; reporting</strong> : indicateurs et rapports de performance.</li>
+            <li><strong>Stratégie de fidélisation</strong> : programmes de reconnaissance et ambassadeurs.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- INFOS PRATIQUES & CONTACT                -->
+    <!-- ========================================= -->
+    <div class="info-row">
+      <div class="info-item"><span class="label">📅 Durée</span><span class="value">6 <small>mois</small></span></div>
+      <div class="info-item"><span class="label">📝 Inscription</span><span class="value">15 000 <span class="currency">FCFA</span></span></div>
+      <div class="info-item"><span class="label">💰 Prix total</span><span class="value">150 000 <span class="currency">FCFA</span></span></div>
+    </div>
+
+    <div class="schedule-block">
+      <p><span class="icon-big">🕒</span> <strong>Nos cours sont disponibles</strong> en journée, en soirée comme en ligne !</p>
+      <span class="badge-online">💻 100% accessible</span>
+    </div>
+
+    <div class="contact-section">
+      <div class="contact-city"><span style="font-size:1.2rem;margin-right:0.3rem;">📍</span> Cotonou</div>
+      <div class="contact-phones">
+        <a href="tel:+2290140321084"><span class="phone-icon">📞</span> +229 01 40 32 10 84</a>
+        <a href="tel:+2290153201003"><span class="phone-icon">📞</span> +229 01 53 20 10 03</a>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="footer-meta">
+      <div style="display:flex;gap:0.6rem;align-items:center;">
+        <span class="pill-light">FORMATION 2026</span>
+        <span style="color:#3c5a7a;font-size:0.85rem;">⭐ Programme officiel CJEPE</span>
+      </div>
+      <div class="footer-note">référent digital · expert en communication digitale · Bénin</div>
+    </div>
+
+    <div class="micro-info">
+      <span>✅ Inscription 15.000 FCFA</span>
+      <span>✅ Prix 150.000 FCFA</span>
+      <span>✅ Durée 6 mois</span>
+      <span>✅ Cotonou</span>
+    </div>
+
+  </div><!-- /body -->
+</div><!-- /container -->
+</body>
+</html>
