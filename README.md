@@ -1,13 +1,27 @@
 # Référent Digital · CJEPE-BENIN
 
-Application web dynamique (React + Vite) présentant le programme de formation
-**Référent Digital · Expert en Communication Digitale** de l'Institut CJEPE-BENIN.
+Application web dynamique multi-pages (React + Vite + React Router) présentant
+le programme de formation **Référent Digital · Expert en Communication
+Digitale** de l'Institut CJEPE-BENIN.
+
+## Pages
+
+- `/` — Accueil : hero, statistiques clés, piliers de la formation.
+- `/programme` — Grille des 26 modules, filtrable par pilier et par recherche.
+- `/module/:id` — Détail d'un module (fiches de contenu, TP interactif, quiz
+  noté), avec pagination précédent/suivant vers les modules voisins.
+- `/infos` — Durée, tarifs et contact.
+
+Le routing utilise `HashRouter` pour rester déployable sans configuration
+serveur particulière (compatible hébergement statique type GitHub Pages).
 
 ## Fonctionnalités
 
-- Sommaire latéral avec navigation par section (défilement automatique, mise en
-  surbrillance de la section active).
-- Recherche en temps réel filtrant modules, cartes et contenus.
+- Navigation multi-pages avec liste de modules et fil d'ariane.
+- Recherche en temps réel et filtres par pilier (Marketing Digital,
+  Communication Digitale, Gestion de Communauté…) sur la page Programme.
+- TP (checklist à cocher, progression affichée) et Quiz noté (correction
+  visuelle, score, recommencer) à la fin de chaque module.
 - Mise en page responsive (menu rétractable sur mobile).
 
 ## Démarrer en local
@@ -26,6 +40,8 @@ npm run preview
 
 ## Structure
 
-- `src/data/sections.js` — contenu du programme (13 sections, infos pratiques, contact).
-- `src/components/` — Header, Sidebar, Section, Card, InfoPanel.
+- `src/data/sections.js` — contenu des modules (fiches, TP, quiz).
+- `src/data/categories.js` — classement des modules par pilier.
+- `src/pages/` — Home, Programme, Module, Infos, NotFound.
+- `src/components/` — NavBar, ModuleCard, ModuleNav, Section, Card, TP, Quiz, InfoPanel.
 - `src/utils/filterSections.js` — logique de recherche/filtrage.
