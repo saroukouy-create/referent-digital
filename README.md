@@ -24,7 +24,14 @@ serveur particulière (compatible hébergement statique type GitHub Pages).
   visuelle, score, recommencer) à la fin de chaque module.
 - Mise en page responsive (menu rétractable sur mobile).
 
-## Démarrer en local
+## Ouvrir directement (sans serveur)
+
+Le fichier [`dist/index.html`](dist/index.html) est un build autonome
+(JS/CSS inlinés) : double-cliquez dessus pour lancer l'application
+directement dans votre navigateur, sans installer Node ni lancer de
+commande. C'est la version à jour du dernier `npm run build` committé.
+
+## Démarrer en local (développement)
 
 ```bash
 npm install
@@ -37,6 +44,10 @@ npm run dev
 npm run build
 npm run preview
 ```
+
+`npm run build` régénère `dist/index.html` en un seul fichier autonome
+(grâce à `vite-plugin-singlefile`) — à recommitter après toute modification
+du contenu si vous voulez que la version "double-clic" reste à jour.
 
 ## Structure
 

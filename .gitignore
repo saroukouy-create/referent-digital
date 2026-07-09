@@ -8,9 +8,11 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-dist
 dist-ssr
 *.local
+
+# dist/ est volontairement suivi : il contient le build autonome
+# (index.html avec JS/CSS inlinés) ouvrable en double-clic sans serveur.
 
 # Editor directories and files
 .vscode/*
