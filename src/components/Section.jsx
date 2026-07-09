@@ -1,5 +1,7 @@
 import { forwardRef } from 'react'
 import Card from './Card'
+import TP from './TP'
+import Quiz from './Quiz'
 
 const Section = forwardRef(function Section({ section }, ref) {
   return (
@@ -12,6 +14,12 @@ const Section = forwardRef(function Section({ section }, ref) {
           <Card key={i} title={card.title} body={card.body} items={card.items} />
         ))}
       </div>
+      {(section.tp || section.quiz) && (
+        <div className="assessment-grid">
+          {section.tp && <TP tp={section.tp} />}
+          {section.quiz && <Quiz quiz={section.quiz} />}
+        </div>
+      )}
     </section>
   )
 })
